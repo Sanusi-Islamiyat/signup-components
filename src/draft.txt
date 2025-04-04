@@ -1,0 +1,86 @@
+import  { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+const SignUpForm = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log("Form Data Submitted:", data);
+  };
+
+  return (
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="card p-4 shadow-lg" data-aos="fade-up" style={{ maxWidth: "400px", width: "100%" }}>
+        <h3 className="text-center mb-4">Sign Up</h3>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-3">
+            <label className="form-label">Full Name</label>
+            <input
+              type="text"
+              className="form-control"
+              {...register("fullName", { required: "Full name is required" })}
+            />
+            {errors.fullName && <small className="text-danger">{errors.fullName.message}</small>}
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Email Address</label>
+            <input
+              type="email"
+              className="form-control"
+              {...register("email", { required: "Email is required", pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email format" } })}
+            />
+            {errors.email && <small className="text-danger">{errors.email.message}</small>}
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              {...register("password", { required: "Password is required", minLength: { value: 6, message: "Password must be at least 6 characters" } })}
+            />
+            {errors.password && <small className="text-danger">{errors.password.message}</small>}
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Confirm Password</label>
+            <input
+              type="password"
+              className="form-control"
+              {...register("confirmPassword", {
+                required: "Confirm password is required",
+                validate: (value) => value === watch("password") || "Passwords do not match",
+              })}
+            />
+            {errors.confirmPassword && <small className="text-danger">{errors.confirmPassword.message}</small>}
+          </div>
+
+          <button type="submit" className="btn btn-dark w-100">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default SignUpForm;
+
+// File Structure:
+// - src/
+//   - components/
+//     - SignUpForm.js (this file)
+//   - pages/
+//     - SignUpPage.js (imports SignUpForm and renders it)
+//   - App.js (routes to SignUpPage)
