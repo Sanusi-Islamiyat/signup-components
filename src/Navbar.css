@@ -1,7 +1,7 @@
 .navbar {
     padding: 10px 20px;
     top: 0;
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -31,21 +31,20 @@
    font-size: 16px;
   }
 .nav-link:hover {
-  background: linear-gradient(260deg, rgba(15, 32, 78, 0.8) 0%, rgba(5, 150, 105, 1) 100%);
+  background: linear-gradient(260deg, rgba(249, 115, 22, 0.8667)0%, rgba(5, 150, 105, 1) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline;
 }
  .nav-link:focus {
- color:  rgb(61, 8, 167);
+ color: rgba(5, 150, 105, 1);
  } 
 
 
 
   .contact-btn {
     background-color: rgba(5, 150, 105, 1);
-
     color: white; 
     padding: 10px 20px;
     font-weight: 600;

@@ -1,16 +1,15 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
 body {
   font-family: 'Montserrat', sans-serif !important;
   color: rgba(75, 85, 99, 1);
+  margin: 0;
+  padding: 0;
+ 
 }
-
-
 
 .home-container {
   text-align: center;
